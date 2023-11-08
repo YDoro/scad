@@ -3,14 +3,15 @@ length = 65;
 height = 10;
 thickness = 2;
 loose = 0.5;
+bolt_head = 1;
 male = true;
 female = true;
 $fit = height / 2;
 
 module boltHole()
 {
-    cylinder(height, 5, 5, $fn = 20);
-    translate([ 0, 0, 0 - height ]) cylinder(h = height * 2, r1 = 1.5, r2 = 1.5, $fn = 20);
+    cylinder(height + bolt_head, 5, 5, $fn = 20);
+    translate([ 0, 0, 0 - height ]) cylinder(h = height * 2 + 2, r1 = 1.5, r2 = 1.5, $fn = 20);
 };
 
 if (female)
@@ -21,12 +22,14 @@ if (female)
         translate([ 0, thickness, height / 2 - $fit ])
         {
             cube([ width - thickness * 2, length, $fit ], true);
-            z = 0 - height / 2 + thickness;
+            translate([ 0, 0, $fit - thickness / 2 ]) cube([ thickness * 2, length, thickness * 2 ], true);
+
+            z = 0 - height / 2 + thickness - bolt_head;
             r = width / 2 - $fit - thickness;
             l = 0 - r;
             up = length / 2 - $fit - thickness * 2;
             down = 0 - (length / 2 - $fit - thickness);
-            translate([ 0, 0, $fit - thickness / 2 ]) cube([ thickness * 2, length, thickness * 2 ], true);
+
             translate([ r, up, z ]) boltHole();
             translate([ r, down, z ]) boltHole();
             translate([ l, up, z ]) boltHole();
