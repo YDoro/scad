@@ -1,7 +1,7 @@
 use <bolt.scad>
 hole_radius = 40;
 border_width = 4;
-border_height = 2;
+border_height = 1;
 table_thickness = 30;
 wall_thickness = 2;
 male = true;
@@ -45,14 +45,15 @@ if (female)
     }
 }
 
-module _clip() {
-    union() {
-        translate([ 0, wall_thickness-overflow, wall_thickness ])
+module _clip()
+{
+    union()
+    {
+        translate([ 0, wall_thickness / 3, wall_thickness ])
             cube([ wall_thickness * 2 - overflow, wall_thickness - overflow, wall_thickness ]);
         translate([ 0, (wall_thickness - overflow * 3) * 1.5, 0 - wall_thickness ])
             cube([ wall_thickness * 2 - overflow, wall_thickness / 1.5, wall_thickness * 4 ]);
     }
-  
 }
 if (male)
 {
@@ -68,13 +69,16 @@ if (male)
             {
                 if (clip)
                 {
-                    translate([ wall_thickness*2, inner_radius  +wall_thickness, 0 - table_thickness / 2 + border_height * 1.75 ])
+                    translate([
+                        wall_thickness * 2, inner_radius + wall_thickness,
+                        0 - table_thickness / 2 + border_height * 1.75
+                    ])
                     {
-                     rotate([0,0,180])color("red") _clip();
+                        rotate([ 0, 0, 180 ]) color("red") _clip();
                     }
                     translate([ 0, 0 - inner_radius - wall_thickness, 0 - table_thickness / 2 + border_height * 1.75 ])
                     {
-                      _clip();
+                        color("red") _clip();
                     }
                 }
             }
