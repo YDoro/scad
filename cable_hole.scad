@@ -61,17 +61,23 @@ if (male)
                 {
                     translate([ 0, inner_radius - wall_thickness, 0 - table_thickness / 2 + border_height * 1.75 ])
                     {
-                        translate([ 0, 0, wall_thickness ])
-                            cube([ wall_thickness * 2 - overflow, wall_thickness * 2 - overflow, wall_thickness ]);
-                        translate([ 0, 0, 0 - wall_thickness ])
-                            cube([ wall_thickness * 2 - overflow, wall_thickness / 1.5, wall_thickness * 4 ]);
+                        union()
+                        {
+                            translate([ 0, 0, wall_thickness ])
+                                cube([ wall_thickness * 2 - overflow, wall_thickness * 2 - overflow, wall_thickness ]);
+                            translate([ 0, 0, 0 - wall_thickness ])
+                                cube([ wall_thickness * 2 - overflow, wall_thickness / 1.5, wall_thickness * 4 ]);
+                        }
                     }
                     translate([ 0, 0 - inner_radius - wall_thickness, 0 - table_thickness / 2 + border_height * 1.75 ])
                     {
-                        translate([ 0, 0, wall_thickness ])
-                            cube([ wall_thickness * 2 - overflow, wall_thickness * 2 - overflow, wall_thickness ]);
-                        translate([ 0, (wall_thickness - overflow * 3) * 1.5, 0 - wall_thickness ])
-                            cube([ wall_thickness * 2 - overflow, wall_thickness / 1.5, wall_thickness * 4 ]);
+                        union()
+                        {
+                            translate([ 0, 0, wall_thickness ])
+                                cube([ wall_thickness * 2 - overflow, wall_thickness * 2 - overflow, wall_thickness ]);
+                            translate([ 0, (wall_thickness - overflow * 3) * 1.5, 0 - wall_thickness ])
+                                cube([ wall_thickness * 2 - overflow, wall_thickness / 1.5, wall_thickness * 4 ]);
+                        }
                     }
                 }
             }
