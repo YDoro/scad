@@ -45,6 +45,15 @@ if (female)
     }
 }
 
+module _clip() {
+    union() {
+        translate([ 0, wall_thickness-overflow, wall_thickness ])
+            cube([ wall_thickness * 2 - overflow, wall_thickness - overflow, wall_thickness ]);
+        translate([ 0, (wall_thickness - overflow * 3) * 1.5, 0 - wall_thickness ])
+            cube([ wall_thickness * 2 - overflow, wall_thickness / 1.5, wall_thickness * 4 ]);
+    }
+  
+}
 if (male)
 {
     difference()
@@ -59,25 +68,13 @@ if (male)
             {
                 if (clip)
                 {
-                    translate([ 0, inner_radius - wall_thickness, 0 - table_thickness / 2 + border_height * 1.75 ])
+                    translate([ wall_thickness*2, inner_radius  +wall_thickness, 0 - table_thickness / 2 + border_height * 1.75 ])
                     {
-                        union()
-                        {
-                            translate([ 0, 0, wall_thickness ])
-                                cube([ wall_thickness * 2 - overflow, wall_thickness * 2 - overflow, wall_thickness ]);
-                            translate([ 0, 0, 0 - wall_thickness ])
-                                cube([ wall_thickness * 2 - overflow, wall_thickness / 1.5, wall_thickness * 4 ]);
-                        }
+                     rotate([0,0,180])color("red") _clip();
                     }
                     translate([ 0, 0 - inner_radius - wall_thickness, 0 - table_thickness / 2 + border_height * 1.75 ])
                     {
-                        union()
-                        {
-                            translate([ 0, 0, wall_thickness ])
-                                cube([ wall_thickness * 2 - overflow, wall_thickness * 2 - overflow, wall_thickness ]);
-                            translate([ 0, (wall_thickness - overflow * 3) * 1.5, 0 - wall_thickness ])
-                                cube([ wall_thickness * 2 - overflow, wall_thickness / 1.5, wall_thickness * 4 ]);
-                        }
+                      _clip();
                     }
                 }
             }
