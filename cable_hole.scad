@@ -50,9 +50,9 @@ module _clip()
     union()
     {
         translate([ 0, wall_thickness / 3, wall_thickness ])
-            cube([ wall_thickness * 2 - overflow, wall_thickness - overflow, wall_thickness ]);
+            cube([ wall_thickness * 2 , wall_thickness, wall_thickness ]);
         translate([ 0, (wall_thickness - overflow * 3) * 1.5, 0 - wall_thickness ])
-            cube([ wall_thickness * 2 - overflow, wall_thickness / 1.5, wall_thickness * 4 ]);
+            cube([ wall_thickness * 2 , wall_thickness , wall_thickness * 4 ]);
     }
 }
 if (male)
